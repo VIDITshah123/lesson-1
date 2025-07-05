@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Basics - Web Development Tutorials</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --accent-color: #9b59b6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.7;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--accent-color), var(--dark-color));
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--accent-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .content-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: var(--accent-color);
+            margin-bottom: 1.2rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        h3 {
+            color: var(--dark-color);
+            margin: 1.5rem 0 0.8rem;
+            font-size: 1.4rem;
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            color: #444;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        li::before {
+            content: '•';
+            color: var(--accent-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .diagram {
+            background: #f0f4f8;
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #334155;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .diagram:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .highlight {
+            background: rgba(255, 215, 0, 0.15);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.95em;
+            color: #d35400;
+            border-left: 3px solid #ffd700;
+            font-weight: 500;
+        }
+        
+        .key-term {
+            font-weight: 600;
+            color: var(--dark-color);
+            background: rgba(52, 152, 219, 0.1);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            border-bottom: 2px solid var(--accent-color);
+            cursor: help;
+            transition: all 0.2s ease;
+        }
+        
+        .key-term:hover {
+            background: rgba(52, 152, 219, 0.2);
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin: 2rem 0;
+            padding: 0.8rem 1.5rem;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .back-to-home:hover {
+            background: var(--dark-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--dark-color);
+            color: white;
+            margin-top: 3rem;
+        }
+        
+        /* New Styles for Enhanced Content */
+        .info-box {
+            background: #f0f9ff;
+            border-left: 4px solid #0ea5e9;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .info-box h4 {
+            color: #0369a1;
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: #cbd5e1;
+        }
+        
+        .service-card h4 {
+            margin: 0 0 0.8rem 0;
+            color: var(--dark-color);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .service-card p {
+            margin: 0;
+            color: #4b5563;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Table of Contents Styles */
+        .toc-container {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .toc-container ol {
+            padding-left: 1.5rem;
+            margin: 0;
+        }
+        
+        .toc-container li {
+            margin: 0.5rem 0;
+            line-height: 1.5;
+        }
+        
+        .toc-container a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .toc-container a:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+        
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #3b82f6;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin: 20px 0;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-year {
+            padding: 0.5rem 1rem;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content {
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+        
+        /* Security Section Styles */
+        .security-tip {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .security-tip h4 {
+            color: #dc2626;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .security-badge {
+            display: inline-block;
+            background: #fecaca;
+            color: #b91c1c;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .content-section {
+                padding: 1.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .diagram {
+                padding: 1.5rem 1rem;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .content-section {
+                padding: 1.25rem;
+            }
+        }    
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Internet Basics</h1>
+            <p class="subtitle">Understanding the fundamental concepts that power the World Wide Web</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <a href="index.html" class="back-to-home">← Back to Home</a>
+        
+        <section class="content-section">
+            <h2>Table of Contents</h2>
+            <div class="toc-container">
+                <ol>
+                    <li><a href="#what-is-internet">What is the Internet?</a></li>
+                    <li><a href="#how-it-works">How the Internet Works</a></li>
+                    <li><a href="#history">History of the Internet</a></li>
+                    <li><a href="#technologies">Key Internet Technologies</a></li>
+                    <li><a href="#infrastructure">Internet Infrastructure</a></li>
+                    <li><a href="#services">Internet Services</a></li>
+                    <li><a href="#security">Internet Security & Privacy</a></li>
+                    <li><a href="#future">Future of the Internet</a></li>
+                    <li><a href="#impact">Social and Economic Impact</a></li>
+                </ol>
+            </div>
+        </section>
+        
+        <section id="what-is-internet" class="content-section">
+            <h2>What is the Internet?</h2>
+            <p>The Internet is a global system of interconnected computer networks that use the Internet protocol suite (TCP/IP) to communicate between networks and devices. It's a network of networks that consists of private, public, academic, business, and government networks of local to global scope, linked by a broad array of electronic, wireless, and optical networking technologies.</p>
+            
+            <div class="diagram">
+                🌐 Global Network of Connected Devices
+                <div style="margin-top: 10px; font-size: 0.9em;">The Internet connects over 5 billion users and billions of devices worldwide</div>
+            </div>
+            
+            <h3>Key Characteristics:</h3>
+            <ul>
+                <li><span class="key-term">Decentralized</span>: No single entity owns or controls the entire Internet</li>
+                <li><span class="key-term">Packet-switched</span>: Data is broken into packets that travel independently across networks</li>
+                <li><span class="key-term">Redundant</span>: Multiple paths exist between any two points, ensuring reliability</li>
+                <li><span class="key-term">Scalable</span>: Can grow to accommodate new networks and users</li>
+                <li><span class="key-term">Interoperable</span>: Works across different hardware and software platforms</li>
+                <li><span class="key-term">Global</span>: Spans across national boundaries and connects people worldwide</li>
+            </ul>
+            
+            <div class="info-box">
+                <h4>Internet vs. World Wide Web</h4>
+                <p>While often used interchangeably, the Internet and the World Wide Web are not the same. The Internet is the infrastructure of networks, while the Web is a service that operates over the Internet, consisting of interconnected documents and resources linked by hyperlinks.</p>
+            </div>
+        </section>
+        
+        <section id="how-it-works" class="content-section">
+            <h2>How the Internet Works</h2>
+            <p>The Internet functions through a sophisticated system of protocols, infrastructure, and services that enable global communication and information exchange:</p>
+            
+            <h3>1. Internet Protocol (IP) Addresses</h3>
+            <p>Every device connected to the Internet has a unique <span class="highlight">IP address</span>, which serves as its digital identifier. There are two main versions in use today:</p>
+            <ul>
+                <li><strong>IPv4</strong>: 32-bit address (e.g., 192.168.1.1) - the original addressing system</li>
+                <li><strong>IPv6</strong>: 128-bit address (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334) - newer system with vastly more addresses</li>
+            </ul>
+            
+            <h3>2. Domain Name System (DNS)</h3>
+            <p>DNS is often called the "phonebook of the Internet" because it translates human-friendly domain names (like www.example.com) into IP addresses that computers can understand. This hierarchical and distributed naming system is essential for the Internet's usability.</p>
+            
+            <div class="diagram">
+                🔄 DNS Lookup Process
+                <div style="margin-top: 10px; font-size: 0.9em;">1. Browser checks cache → 2. OS checks cache → 3. ISP's DNS server → 4. Root server → 5. TLD server → 6. Authoritative server → 7. IP Address returned</div>
+            </div>
+            
+            <h3>3. Data Transmission: Packets and Routing</h3>
+            <p>Data sent over the Internet is broken into <span class="key-term">packets</span>, which are small chunks of data that include:</p>
+            <ul>
+                <li>Source and destination IP addresses</li>
+                <li>Sequence information for reassembly</li>
+                <li>Error-checking data</li>
+            </ul>
+            <p>Routers direct these packets across the network using the most efficient path available, and they may take different routes to reach the same destination. The Transmission Control Protocol (TCP) ensures all packets arrive and are reassembled in the correct order.</p>
+            
+            <h3>4. Internet Infrastructure</h3>
+            <p>The physical infrastructure of the Internet includes:</p>
+            <ul>
+                <li><strong>Undersea Cables</strong>: Fiber-optic cables on ocean floors connecting continents</li>
+                <li><strong>Internet Exchange Points (IXPs)</strong>: Physical locations where different networks connect</li>
+                <li><strong>Data Centers</strong>: Facilities housing servers that store and process data</li>
+                <li><strong>Internet Service Providers (ISPs)</strong>: Companies that provide Internet access to end users</li>
+            </ul>
+        </section>
+        
+        <section id="history" class="content-section">
+            <h2>History of the Internet</h2>
+            <p>The Internet's development spans over six decades, evolving from a military research project to the global network we know today.</p>
+            
+            <h3>1960s: The Birth of Packet Switching</h3>
+            <ul>
+                <li><strong>1962</strong>: J.C.R. Licklider proposes the concept of an "Intergalactic Computer Network"</li>
+                <li><strong>1965</strong>: First wide-area network connection established between MIT and SDC</li>
+                <li><strong>1969</strong>: ARPANET, the precursor to the Internet, is launched with the first message sent between UCLA and SRI</li>
+            </ul>
+            
+            <h3>1970s: Building the Foundation</h3>
+            <ul>
+                <li><strong>1971</strong>: Ray Tomlinson sends the first email</li>
+                <li><strong>1973</strong>: Development of TCP/IP protocol suite begins</li>
+                <li><strong>1977</strong>: First demonstration of ARPANET, PRNET, and SATNET networks working together</li>
+            </ul>
+            
+            <h3>1980s: The Internet Takes Shape</h3>
+            <ul>
+                <li><strong>1983</strong>: TCP/IP becomes the standard protocol for ARPANET</li>
+                <li><strong>1984</strong>: Domain Name System (DNS) is introduced</li>
+                <li><strong>1989</strong>: Tim Berners-Lee proposes the World Wide Web at CERN</li>
+            </ul>
+            
+            <h3>1990s: The Web Goes Public</h3>
+            <ul>
+                <li><strong>1991</strong>: First website goes live at CERN</li>
+                <li><strong>1993</strong>: Mosaic web browser is released, popularizing the Web</li>
+                <li><strong>1995</strong>: Commercialization of the Internet begins</li>
+                <li><strong>1998</strong>: Google is founded, revolutionizing web search</li>
+            </ul>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1969</div>
+                    <div class="timeline-content">ARPANET launched</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1983</div>
+                    <div class="timeline-content">TCP/IP becomes standard</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1991</div>
+                    <div class="timeline-content">World Wide Web introduced</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2007</div>
+                    <div class="timeline-content">iPhone launches, mobile web grows</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2020s</div>
+                    <div class="timeline-content">5G, IoT, and AI transform the Internet</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="technologies" class="content-section">
+            <h2>Key Internet Technologies</h2>
+            
+            <h3>1. World Wide Web (WWW)</h3>
+            <p>Invented by Tim Berners-Lee in 1989, the Web is an information system where documents and resources are identified by URLs and accessed via web browsers. It's built on three fundamental technologies:</p>
+            <ul>
+                <li><strong>HTML</strong> (HyperText Markup Language): The standard markup language for creating web pages</li>
+                <li><strong>HTTP/HTTPS</strong>: Protocols for transmitting web resources</li>
+                <li><strong>URLs</strong> (Uniform Resource Locators): Addresses used to access web resources</li>
+            </ul>
+            
+            <h3>2. Web Protocols</h3>
+            <ul>
+                <li><strong>HTTP/HTTPS</strong>: Hypertext Transfer Protocol (Secure) for web page transmission</li>
+                <li><strong>FTP</strong>: File Transfer Protocol for file sharing</li>
+                <li><strong>SMTP/IMAP/POP3</strong>: Protocols for email transmission and retrieval</li>
+                <li><strong>VoIP</strong>: Voice over Internet Protocol for voice and video calls</li>
+            </ul>
+            
+            <h3>3. Web Browsers</h3>
+            <p>Software applications used to access and view websites. Major browsers include:</p>
+            <ul>
+                <li>Google Chrome</li>
+                <li>Mozilla Firefox</li>
+                <li>Apple Safari</li>
+                <li>Microsoft Edge</li>
+                <li>Opera</li>
+            </ul>
+            
+            <h3>4. Search Engines</h3>
+            <p>Tools that help users find information on the web by crawling, indexing, and ranking web pages. Major search engines include:</p>
+            <ul>
+                <li>Google (dominates with ~92% of the global search market)</li>
+                <li>Bing</li>
+                <li>Yahoo!</li>
+                <li>Baidu (popular in China)</li>
+                <li>Yandex (popular in Russia)</li>
+            </ul>
+            
+            <div class="info-box">
+                <h4>Emerging Technologies</h4>
+                <p>The Internet continues to evolve with new technologies like:</p>
+                <ul>
+                    <li><strong>5G Networks</strong>: Faster mobile Internet with lower latency</li>
+                    <li><strong>IoT</strong> (Internet of Things): Network of physical devices connected to the Internet</li>
+                    <li><strong>Blockchain</strong>: Decentralized technology underlying cryptocurrencies</li>
+                    <li><strong>AI and Machine Learning</strong>: Powering personalized experiences and automation</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="infrastructure" class="content-section">
+            <h2>Internet Infrastructure</h2>
+            <p>The physical and organizational structure that makes the Internet work is vast and complex, spanning the entire globe.</p>
+            
+            <h3>1. Internet Service Providers (ISPs)</h3>
+            <p>Companies that provide Internet access to individuals and organizations. They form a hierarchy:</p>
+            <ul>
+                <li><strong>Tier 1</strong>: Global backbone providers that connect to every other network without paying for transit</li>
+                <li><strong>Tier 2</strong>: Regional providers that connect to Tier 1 providers and peer with other networks</li>
+                <li><strong>Tier 3</strong>: Local ISPs that provide service to end users</li>
+            </ul>
+            
+            <h3>2. Data Centers</h3>
+            <p>Facilities that house computer systems and associated components, such as telecommunications and storage systems. Modern data centers feature:</p>
+            <ul>
+                <li>Redundant power supplies and backup generators</li>
+                <li>Advanced cooling systems</li>
+                <li>Physical security measures</li>
+                <li>High-speed network connections</li>
+            </ul>
+            
+            <h3>3. Undersea Cables</h3>
+            <p>Network of fiber-optic cables laid on the ocean floor that carry 99% of international Internet traffic. Key facts:</p>
+            <ul>
+                <li>Over 1.4 million kilometers of undersea cables exist</li>
+                <li>New cables can carry up to 250 terabits per second</li>
+                <li>Major routes connect North America, Europe, and Asia</li>
+                <li>Installation and maintenance cost millions of dollars</li>
+            </ul>
+            
+            <h3>4. Internet Exchange Points (IXPs)</h3>
+            <p>Physical locations where different ISPs and networks connect to exchange traffic. Benefits include:</p>
+            <ul>
+                <li>Reduced latency by keeping traffic local</li>
+                <li>Lower costs by avoiding transit fees</li>
+                <li>Improved performance and reliability</li>
+                <li>Fostering local Internet ecosystems</li>
+            </ul>
+            
+            <div class="diagram">
+                🌍 Global Internet Infrastructure
+                <div style="margin-top: 10px; font-size: 0.9em;">Undersea Cables + IXPs + Data Centers + ISPs = Global Connectivity</div>
+            </div>
+        </section>
+        
+        <section id="services" class="content-section">
+            <h2>Internet Services and Applications</h2>
+            <p>The Internet enables a wide range of services that have transformed how we live, work, and communicate:</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4>🌐 World Wide Web</h4>
+                    <p>Access to billions of websites and web applications</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>📧 Email</h4>
+                    <p>Electronic mail communication with support for attachments</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>💬 Social Media</h4>
+                    <p>Platforms like Facebook, Twitter, Instagram, and LinkedIn for social interaction</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>☁️ Cloud Computing</h4>
+                    <p>Remote data storage, processing, and software services (e.g., AWS, Google Cloud, Microsoft Azure)</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>🎬 Streaming Services</h4>
+                    <p>On-demand audio and video content (e.g., Netflix, Spotify, YouTube)</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>🛒 E-commerce</h4>
+                    <p>Online shopping, banking, and financial transactions</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>📱 Messaging & VoIP</h4>
+                    <p>Real-time communication through text, voice, and video (e.g., WhatsApp, Zoom, Skype)</p>
+                </div>
+                
+                <div class="service-card">
+                    <h4>🌍 Internet of Things (IoT)</h4>
+                    <p>Network of interconnected devices and smart appliances</p>
+                </div>
+            </div>
+            
+            <h3>Internet Usage Statistics (2025)</h3>
+            <ul>
+                <li>Over 5.3 billion Internet users worldwide (66% of global population)</li>
+                <li>Average user spends 6-7 hours online daily</li>
+                <li>Over 1.9 billion websites exist (but only a fraction are active)</li>
+                <li>Mobile devices account for ~60% of web traffic</li>
+                <li>Global Internet traffic exceeds 4.8 zettabytes annually</li>
+            </ul>
+        </section>
+        
+        <section id="security" class="content-section">
+            <h2>Internet Security & Privacy</h2>
+            <p>As the Internet has grown, so have the challenges related to security and privacy. Understanding these aspects is crucial for safe online navigation.</p>
+            
+            <div class="security-tip">
+                <h4>Security Tip</h4>
+                <p>Always use strong, unique passwords and enable two-factor authentication (2FA) for your important accounts to enhance security.</p>
+            </div>
+            
+            <h3>Common Online Threats</h3>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4><span class="security-badge">Malware</span></h4>
+                    <p>Malicious software designed to harm or exploit devices, including viruses, worms, trojans, and ransomware.</p>
+                </div>
+                <div class="service-card">
+                    <h4><span class="security-badge">Phishing</span></h4>
+                    <p>Fraudulent attempts to obtain sensitive information by disguising as a trustworthy entity.</p>
+                </div>
+                <div class="service-card">
+                    <h4><span class="security-badge">DDoS Attacks</span></h4>
+                    <p>Distributed Denial of Service attacks overwhelm a target with traffic from multiple sources.</p>
+                </div>
+                <div class="service-card">
+                    <h4><span class="security-badge">Man-in-the-Middle</span></h4>
+                    <p>Attackers secretly intercept and relay messages between two parties who believe they are directly communicating.</p>
+                </div>
+            </div>
+            
+            <h3>Protecting Your Privacy</h3>
+            <ul>
+                <li>Use a reputable VPN service for secure browsing on public networks</li>
+                <li>Regularly update your software and operating systems</li>
+                <li>Be cautious about sharing personal information online</li>
+                <li>Review and adjust privacy settings on social media platforms</li>
+                <li>Use encrypted messaging apps for sensitive communications</li>
+            </ul>
+            
+            <div class="info-box">
+                <h4>Did You Know?</h4>
+                <p>As of 2025, over 90% of web traffic is encrypted using HTTPS, a significant increase from just 40% in 2015.</p>
+            </div>
+        </section>
+        
+        <section id="future" class="content-section">
+            <h2>Future of the Internet</h2>
+            <p>The Internet continues to evolve rapidly, with several emerging technologies set to transform how we interact online.</p>
+            
+            <h3>Emerging Technologies</h3>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4>5G and Beyond</h4>
+                    <p>Next-generation wireless technology enabling faster speeds, lower latency, and massive IoT connectivity.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Web 3.0</h4>
+                    <p>Decentralized web powered by blockchain technology, enabling user-owned data and digital assets.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Quantum Internet</h4>
+                    <p>Quantum networks enabling ultra-secure communication through quantum key distribution.</p>
+                </div>
+                <div class="service-card">
+                    <h4>AI Integration</h4>
+                    <p>Advanced AI systems that understand and predict user needs with unprecedented accuracy.</p>
+                </div>
+            </div>
+            
+            <h3>Challenges Ahead</h3>
+            <ul>
+                <li>Digital divide and ensuring equitable access to Internet resources</li>
+                <li>Balancing privacy with technological advancement</li>
+                <li>Cybersecurity in an increasingly connected world</li>
+                <li>Regulating emerging technologies without stifling innovation</li>
+                <li>Environmental impact of digital infrastructure</li>
+            </ul>
+        </section>
+        
+        <section id="impact" class="content-section">
+            <h2>Social and Economic Impact</h2>
+            <p>The Internet has fundamentally transformed nearly every aspect of modern society, with far-reaching consequences.</p>
+            
+            <h3>Economic Transformation</h3>
+            <ul>
+                <li><strong>E-commerce</strong>: Global e-commerce sales exceeded $6.3 trillion in 2024</li>
+                <li><strong>Remote Work</strong>: Over 30% of the global workforce now works remotely at least part-time</li>
+                <li><strong>Digital Economy</strong> accounts for over 15% of global GDP</li>
+                <li><strong>Startup Culture</strong> has been revolutionized by cloud computing and global connectivity</li>
+            </ul>
+            
+            <h3>Social and Cultural Effects</h3>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4>Global Connectivity</h4>
+                    <p>Instant communication across borders has created a more interconnected world.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Education Revolution</h4>
+                    <p>Online learning platforms have made education more accessible than ever before.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Social Movements</h4>
+                    <p>The Internet has become a powerful tool for activism and social change.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Cultural Exchange</h4>
+                    <p>Global sharing of ideas, art, and culture has never been easier.</p>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <h4>Looking Ahead</h4>
+                <p>As we move forward, the challenge will be to harness the Internet's potential while addressing its challenges, ensuring it remains an open, secure, and beneficial resource for all of humanity.</p>
+            </div>
+        </section>
+        
+        <a href="index.html" class="back-to-home" style="display: inline-block; margin: 3rem 0;">← Back to Home</a>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Web Development Tutorials. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
