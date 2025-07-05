@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Basics</title>
+    <link rel="stylesheet" href="styles.css">
+    <style id="dynamic-styles"></style>
+</head>
+<body>
+    <header>
+        <h1>Web Development Basics</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html.html">HTML</a></li>
+                <li><a href="css.html" class="active">CSS</a></li>
+                <li><a href="javascript.html">JavaScript</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>CSS Basics</h2>
+        
+        <section class="lesson-content">
+            <h3>What is CSS?</h3>
+            <p>CSS (Cascading Style Sheets) is used to style and layout web pages.</p>
+            
+            <h3>Basic CSS Syntax</h3>
+            <pre><code>selector {
+    property: value;
+}</code></pre>
+
+            <h3>Common CSS Properties</h3>
+            <ul>
+                <li>color - Text color</li>
+                <li>background-color - Background color</li>
+                <li>font-size - Text size</li>
+                <li>margin - External spacing</li>
+                <li>padding - Internal spacing</li>
+                <li>border - Border styling</li>
+            </ul>
+
+            <h3>Interactive CSS Editor</h3>
+            <div class="example">
+                <div class="editor-container">
+                    <div class="editor-pane">
+                        <h4>CSS Code</h4>
+                        <textarea id="css-code">
+.box {
+    width: 200px;
+    height: 100px;
+    background-color: lightblue;
+    border: 2px solid blue;
+    padding: 10px;
+    margin: 20px;
+}
+                        </textarea>
+                    </div>
+                    <div class="editor-pane">
+                        <h4>HTML Structure</h4>
+                        <div class="html-preview">
+                            <div class="box">This is a box</div>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="applyCSS()">Apply Styles</button>
+            </div>
+
+            <h3>CSS Selectors</h3>
+            <ul>
+                <li>.class - Selects elements with a specific class</li>
+                <li>#id - Selects elements with a specific ID</li>
+                <li>element - Selects elements by tag name</li>
+                <li>element, element - Multiple selectors</li>
+                <li>element element - Descendant selector</li>
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        function applyCSS() {
+            const css = document.getElementById('css-code').value;
+            const styleTag = document.getElementById('dynamic-styles');
+            styleTag.textContent = css;
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2025 Web Development Basics</p>
+    </footer>
+</body>
+</html>

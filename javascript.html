@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Basics</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Web Development Basics</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html.html">HTML</a></li>
+                <li><a href="css.html">CSS</a></li>
+                <li><a href="javascript.html" class="active">JavaScript</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>JavaScript Basics</h2>
+        
+        <section class="lesson-content">
+            <h3>What is JavaScript?</h3>
+            <p>JavaScript is a programming language that adds interactivity to websites.</p>
+            
+            <h3>Basic JavaScript Concepts</h3>
+            <ul>
+                <li>Variables and Data Types</li>
+                <li>Functions</li>
+                <li>Events</li>
+                <li>DOM Manipulation</li>
+                <li>Conditional Statements</li>
+            </ul>
+
+            <h3>Interactive JavaScript Console</h3>
+            <div class="example">
+                <div class="console-container">
+                    <h4>JavaScript Code</h4>
+                    <textarea id="js-code">
+// Example code
+function greet(name) {
+    return "Hello, " + name + "!";
+}
+
+document.getElementById('output').textContent = greet('World');
+                    </textarea>
+                </div>
+                <div class="console-output">
+                    <h4>Output</h4>
+                    <div id="output"></div>
+                </div>
+            </div>
+            <button onclick="runJavaScript()">Run Code</button>
+        </section>
+
+        <section class="js-examples">
+            <h3>Common JavaScript Examples</h3>
+            
+            <div class="example-card">
+                <h4>Event Handling</h4>
+                <button id="event-button" onclick="handleEvent()">Click Me!</button>
+                <p id="event-output"></p>
+                <pre><code>function handleEvent() {
+    document.getElementById('event-output').textContent = 'Button clicked!';
+}</code></pre>
+            </div>
+
+            <div class="example-card">
+                <h4>DOM Manipulation</h4>
+                <div id="dom-example">
+                    <p>Change my text color!</p>
+                </div>
+                <button onclick="changeColor()">Change Color</button>
+                <pre><code>function changeColor() {
+    const element = document.getElementById('dom-example');
+    element.style.color = 'blue';
+}</code></pre>
+            </div>
+
+            <div class="example-card">
+                <h4>Conditional Statements</h4>
+                <input type="number" id="age-input" placeholder="Enter your age">
+                <button onclick="checkAge()">Check Age</button>
+                <p id="age-output"></p>
+                <pre><code>function checkAge() {
+    const age = document.getElementById('age-input').value;
+    if (age >= 18) {
+        document.getElementById('age-output').textContent = 'You are an adult.';
+    } else {
+        document.getElementById('age-output').textContent = 'You are a minor.';
+    }
+}</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function runJavaScript() {
+            const code = document.getElementById('js-code').value;
+            try {
+                eval(code);
+            } catch (error) {
+                document.getElementById('output').textContent = 'Error: ' + error.message;
+            }
+        }
+
+        function handleEvent() {
+            document.getElementById('event-output').textContent = 'Button clicked!';
+        }
+
+        function changeColor() {
+            const element = document.getElementById('dom-example');
+            element.style.color = 'blue';
+        }
+
+        function checkAge() {
+            const age = document.getElementById('age-input').value;
+            const output = document.getElementById('age-output');
+            if (age >= 18) {
+                output.textContent = 'You are an adult.';
+            } else {
+                output.textContent = 'You are a minor.';
+            }
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2025 Web Development Basics</p>
+    </footer>
+</body>
+</html>
