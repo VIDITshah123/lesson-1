@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essential Unix Commands for Developers</title>
+    <style>
+        :root {
+            --primary-color: #2ecc71;
+            --secondary-color: #27ae60;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --code-bg: #f8f9fa;
+            --code-color: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        body {
+            color: #333;
+            background-color: #f9f9f9;
+            padding: 0;
+            margin: 0;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            color: var(--dark-color);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-color);
+        }
+        
+        .command {
+            background: var(--code-bg);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+        
+        .description {
+            margin-bottom: 20px;
+            color: #444;
+        }
+        
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 10px 15px;
+            margin: 10px 0 20px;
+        }
+        
+        .example-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #e9f7ef;
+        }
+        
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Essential Unix Commands for Developers</h1>
+            <p>Master the command line to boost your productivity</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="description">
+            <p>Unix commands are essential tools for developers to navigate and manipulate files, manage processes, and automate tasks. Here's a comprehensive guide to the most important commands every developer should know.</p>
+        </div>
+        
+        <h2>File System Navigation</h2>
+        
+        <h3>pwd - Print Working Directory</h3>
+        <div class="command">pwd</div>
+        <p>Displays the full path of the current working directory.</p>
+        
+        <h3>ls - List Directory Contents</h3>
+        <div class="command">ls [options] [directory]</div>
+        <p>Lists files and directories in the current directory.</p>
+        <div class="example">
+            <div class="example-title">Common options:</div>
+            <p><code>-l</code> Long format (detailed listing)</p>
+            <p><code>-a</code> Show hidden files</p>
+            <p><code>-h</code> Human-readable file sizes</p>
+        </div>
+        
+        <h3>cd - Change Directory</h3>
+        <div class="command">cd [directory]</div>
+        <p>Changes the current working directory.</p>
+        <div class="example">
+            <div class="example-title">Examples:</div>
+            <p><code>cd /path/to/directory</code> - Change to absolute path</p>
+            <p><code>cd ..</code> - Move up one directory</p>
+            <p><code>cd ~</code> - Go to home directory</p>
+            <p><code>cd -</code> - Go to previous directory</p>
+        </div>
+        
+        <h2>File Operations</h2>
+        
+        <h3>cp - Copy Files/Directories</h3>
+        <div class="command">cp [options] source destination</div>
+        <p>Copies files and directories.</p>
+        <div class="example">
+            <div class="example-title">Examples:</div>
+            <p><code>cp file.txt /backup/</code> - Copy file to directory</p>
+            <p><code>cp -r dir1/ dir2/</code> - Copy directory recursively</p>
+        </div>
+        
+        <h3>mv - Move/Rename Files</h3>
+        <div class="command">mv [options] source destination</div>
+        <p>Moves or renames files and directories.</p>
+        <div class="example">
+            <div class="example-title">Examples:</div>
+            <p><code>mv oldname.txt newname.txt</code> - Rename file</p>
+            <p><code>mv file.txt /new/location/</code> - Move file</p>
+        </div>
+        
+        <h3>rm - Remove Files/Directories</h3>
+        <div class="command">rm [options] file/directory</div>
+        <p>Removes files and directories.</p>
+        <div class="note">
+            <strong>Warning:</strong> Deleted files cannot be recovered. Use with caution!
+        </div>
+        <div class="example">
+            <div class="example-title">Common options:</div>
+            <p><code>-r</code> Recursive (for directories)</p>
+            <p><code>-f</code> Force (no confirmation)</p>
+            <p><code>-i</code> Interactive (ask for confirmation)</p>
+        </div>
+        
+        <h2>File Viewing and Editing</h2>
+        
+        <h3>cat - Concatenate and Display</h3>
+        <div class="command">cat [file]</div>
+        <p>Displays file contents.</p>
+        
+        <h3>less/more - File Pager</h3>
+        <div class="command">less [file]</div>
+        <p>Views file contents one screen at a time.</p>
+        <div class="example">
+            <div class="example-title">Navigation in less:</div>
+            <p><code>Space</code> - Next page</p>
+            <p><code>b</code> - Previous page</p>
+            <p><code>q</code> - Quit</p>
+            <p><code>/pattern</code> - Search forward</p>
+            <p><code>?pattern</code> - Search backward</p>
+        </div>
+        
+        <h3>head/tail - View File Start/End</h3>
+        <div class="command">head -n 10 file.txt  # Show first 10 lines
+tail -n 20 file.log  # Show last 20 lines</div>
+        
+        <h3>grep - Search Text</h3>
+        <div class="command">grep [options] pattern [file...]</div>
+        <p>Searches for patterns in files.</p>
+        <div class="example">
+            <div class="example-title">Examples:</div>
+            <p><code>grep "error" log.txt</code> - Search for "error" in file</p>
+            <p><code>grep -r "function" src/</code> - Recursive search</p>
+            <p><code>grep -i "warning" file.txt</code> - Case-insensitive search</p>
+        </div>
+        
+        <h2>File Permissions</h2>
+        
+        <h3>chmod - Change File Mode</h3>
+        <div class="command">chmod [options] mode file</div>
+        <p>Changes file permissions.</p>
+        <div class="example">
+            <div class="example-title">Examples:</div>
+            <p><code>chmod +x script.sh</code> - Make file executable</p>
+            <p><code>chmod 644 file.txt</code> - rw-r--r--</p>
+            <p><code>chmod -R 755 directory/</code> - Recursively change permissions</p>
+        </div>
+        
+        <h3>chown - Change Owner</h3>
+        <div class="command">chown [options] user:group file</div>
+        <p>Changes file owner and group.</p>
+        
+        <h2>Process Management</h2>
+        
+        <h3>ps - Process Status</h3>
+        <div class="command">ps aux</div>
+        <p>Lists all running processes.</p>
+        
+        <h3>top/htop - Process Viewer</h3>
+        <div class="command">top</div>
+        <p>Interactive process viewer (q to quit).</p>
+        
+        <h3>kill - Terminate Process</h3>
+        <div class="command">kill [signal] PID</div>
+        <p>Sends a signal to a process.</p>
+        <div class="example">
+            <div class="example-title">Common signals:</div>
+            <p><code>kill -9 1234</code> - Force kill process 1234</p>
+            <p><code>kill -15 1234</code> - Graceful termination</p>
+        </div>
+        
+        <h2>Networking</h2>
+        
+        <h3>ping - Test Network Connectivity</h3>
+        <div class="command">ping [hostname/IP]</div>
+        
+        <h3>curl - Transfer Data</h3>
+        <div class="command">curl [options] [URL...]</div>
+        <p>Transfers data to/from a server.</p>
+        <div class="example">
+            <div class="example-title">Examples:</div>
+            <p><code>curl -O https://example.com/file.zip</code> - Download file</p>
+            <p><code>curl -X POST -d "data=example" http://api.example.com</code> - Send POST request</p>
+        </div>
+        
+        <h3>ssh - Secure Shell</h3>
+        <div class="command">ssh user@hostname</div>
+        <p>Connects to a remote server securely.</p>
+        
+        <h3>scp - Secure Copy</h3>
+        <div class="command">scp source user@host:destination</div>
+        <p>Copies files between hosts securely.</p>
+        
+        <h2>System Information</h2>
+        
+        <h3>df - Disk Free</h3>
+        <div class="command">df -h</div>
+        <p>Shows disk space usage.</p>
+        
+        <h3>du - Disk Usage</h3>
+        <div class="command">du -sh [directory]</div>
+        <p>Shows directory space usage.</p>
+        
+        <h3>free - Memory Usage</h3>
+        <div class="command">free -h</div>
+        <p>Shows memory usage.</p>
+        
+        <h3>uname - System Information</h3>
+        <div class="command">uname -a</div>
+        <p>Shows system information.</p>
+        
+        <h2>Package Management (Ubuntu/Debian)</h2>
+        
+        <h3>apt - Package Management</h3>
+        <div class="command">sudo apt update  # Update package lists
+sudo apt upgrade  # Upgrade all packages
+sudo apt install package  # Install a package
+sudo apt remove package  # Remove a package</div>
+        
+        <h2>Useful Shortcuts</h2>
+        <ul>
+            <li><code>Ctrl+C</code> - Stop current command</li>
+            <li><code>Ctrl+Z</code> - Suspend current command (bg/fg to manage)</li>
+            <li><code>Ctrl+D</code> - End of file/Exit shell</li>
+            <li><code>Ctrl+R</code> - Search command history</li>
+            <li><code>!!</code> - Repeat last command</li>
+            <li><code>!$</code> - Last argument of previous command</li>
+            <li><code>command &gt; file</code> - Redirect output to file (overwrite)</li>
+            <li><code>command &gt;&gt; file</code> - Append output to file</li>
+            <li><code>command1 | command2</code> - Pipe output of command1 to command2</li>
+        </ul>
+        
+        <div class="note">
+            <p><strong>Tip:</strong> Use <code>man command</code> to read the manual for any command (e.g., <code>man ls</code>). Press 'q' to quit the manual.</p>
+        </div>
+        
+        <a href="index.html" class="back-link">← Back to Tutorials</a>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Web Development Tutorials. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
