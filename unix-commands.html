@@ -329,6 +329,144 @@ sudo apt remove package  # Remove a package</div>
             <li><code>command1 | command2</code> - Pipe output of command1 to command2</li>
         </ul>
         
+        <h2>Text Processing</h2>
+        
+        <h3>sed - Stream Editor</h3>
+        <div class="command">sed [options] 's/pattern/replacement/' file</div>
+        <p>Performs text transformations on an input stream.</p>
+        <div class="example">
+            <div class="example-title">Examples:</div>
+            <p><code>sed 's/foo/bar/g' file.txt</code> - Replace all 'foo' with 'bar'</p>
+            <p><code>sed -i.bak 's/old/new/' file.txt</code> - Edit file in place with backup</p>
+        </div>
+        
+        <h3>awk - Pattern Scanning and Processing</h3>
+        <div class="command">awk 'pattern { action }' file</div>
+        <p>Powerful text processing and data extraction.</p>
+        <div class="example">
+            <div class="example-title">Examples:</div>
+            <p><code>awk '{print $1}' file.txt</code> - Print first column</p>
+            <p><code>awk '/error/ {count++} END {print count}' log.txt</code> - Count errors</p>
+        </div>
+        
+        <h3>sort - Sort Lines of Text</h3>
+        <div class="command">sort [options] [file]</div>
+        <p>Sorts lines in a file.</p>
+        <div class="example">
+            <div class="example-title">Common options:</div>
+            <p><code>-n</code> - Numeric sort</p>
+            <p><code>-r</code> - Reverse order</p>
+            <p><code>-u</code> - Unique lines only</p>
+        </div>
+        
+        <h3>uniq - Report or Omit Repeated Lines</h3>
+        <div class="command">uniq [options] [input [output]]</div>
+        <p>Filters adjacent matching lines from input.</p>
+        <div class="example">
+            <div class="example-title">Example:</div>
+            <p><code>sort file.txt | uniq -c | sort -nr</code> - Count and sort unique lines</p>
+        </div>
+        
+        <h2>Advanced File Operations</h2>
+        
+        <h3>find - Search for Files</h3>
+        <div class="command">find [path] [expression]</div>
+        <p>Searches for files in a directory hierarchy.</p>
+        <div class="example">
+            <div class="example-title">Examples:</div>
+            <p><code>find /path -name "*.log"</code> - Find files by name</p>
+            <p><code>find . -type f -mtime -7</code> - Files modified in last 7 days</p>
+            <p><code>find . -size +10M -exec ls -lh {}\;</code> - Find large files</p>
+        </div>
+        
+        <h3>tar - Archive Files</h3>
+        <div class="command">tar [options] [archive-file] [files]</div>
+        <p>Creates and extracts archive files.</p>
+        <div class="example">
+            <div class="example-title">Common operations:</div>
+            <p><code>tar -czvf archive.tar.gz directory/</code> - Create gzipped archive</p>
+            <p><code>tar -xzvf archive.tar.gz</code> - Extract gzipped archive</p>
+        </div>
+        
+        <h3>rsync - Remote File Sync</h3>
+        <div class="command">rsync [options] source destination</div>
+        <p>Efficiently copies and syncs files locally or remotely.</p>
+        <div class="example">
+            <div class="example-title">Example:</div>
+            <p><code>rsync -avz /local/dir/ user@remote:/remote/dir/</code> - Sync directories</p>
+        </div>
+        
+        <h2>System Monitoring and Performance</h2>
+        
+        <h3>htop - Interactive Process Viewer</h3>
+        <div class="command">htop</div>
+        <p>Interactive process viewer (install with <code>sudo apt install htop</code>).</p>
+        
+        <h3>iostat - CPU and I/O Statistics</h3>
+        <div class="command">iostat [options] [interval] [count]</div>
+        <p>Reports CPU and I/O statistics.</p>
+        
+        <h3>netstat - Network Statistics</h3>
+        <div class="command">netstat -tuln</div>
+        <p>Displays network connections, routing tables, and interface statistics.</p>
+        
+        <h3>lsof - List Open Files</h3>
+        <div class="command">lsof [options]</div>
+        <p>Lists information about files opened by processes.</p>
+        <div class="example">
+            <div class="example-title">Examples:</div>
+            <p><code>lsof -i :80</code> - Find processes using port 80</p>
+            <p><code>lsof /path/to/file</code> - Find processes using a file</p>
+        </div>
+        
+        <h2>User and Permission Management</h2>
+        
+        <h3>sudo - Execute as Superuser</h3>
+        <div class="command">sudo command</div>
+        <p>Executes a command with superuser privileges.</p>
+        
+        <h3>su - Switch User</h3>
+        <div class="command">su - username</div>
+        <p>Switches to another user account.</p>
+        
+        <h3>passwd - Change Password</h3>
+        <div class="command">passwd [username]</div>
+        <p>Changes user password.</p>
+        
+        <h3>usermod - Modify User Account</h3>
+        <div class="command">usermod [options] username</div>
+        <p>Modifies a user account.</p>
+        
+        <h2>Compression and Archiving</h2>
+        
+        <h3>gzip/gunzip - File Compression</h3>
+        <div class="command">gzip file.txt       # Compress
+gunzip file.txt.gz  # Decompress</div>
+        <p>Compresses or decompresses files.</p>
+        
+        <h3>zip/unzip - Package and Compress Files</h3>
+        <div class="command">zip archive.zip files...    # Create zip
+unzip archive.zip          # Extract zip</div>
+        
+        <h2>System Information (Advanced)</h2>
+        
+        <h3>lscpu - CPU Information</h3>
+        <div class="command">lscpu</div>
+        <p>Displays information about the CPU architecture.</p>
+        
+        <h3>lsblk - List Block Devices</h3>
+        <div class="command">lsblk</div>
+        <p>Lists information about all available block devices.</p>
+        
+        <h3>journalctl - Query Systemd Journal</h3>
+        <div class="command">journalctl [options]</div>
+        <p>Views and analyzes systemd logs.</p>
+        <div class="example">
+            <div class="example-title">Examples:</div>
+            <p><code>journalctl -u nginx</code> - View nginx service logs</p>
+            <p><code>journalctl --since "1 hour ago"</code> - Recent logs</p>
+        </div>
+        
         <div class="note">
             <p><strong>Tip:</strong> Use <code>man command</code> to read the manual for any command (e.g., <code>man ls</code>). Press 'q' to quit the manual.</p>
         </div>
